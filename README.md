@@ -18,7 +18,7 @@ Bem-vindo! Esta API permite buscar previsões do tempo de uma cidade usando dado
 ### 1️⃣ Clonar o Repositório
 ```bash
 git clone https://github.com/seu-usuario/fastweather_api.git
-cd dev_jr_test-main
+cd fastweather_api
 ```
 
 ### 2️⃣ Criar e Ativar Ambiente Virtual
