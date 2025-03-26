@@ -2,9 +2,8 @@ import datetime
 import requests
 from fastapi import HTTPException
 from sqlalchemy.orm import Session
-
-from app.models import Previsao
-from app.schemas import PrevisaoCreate
+from app.model.previsao_entity import Previsao
+from app.dto.previsao_dto import PrevisaoCreate
 from dotenv import load_dotenv
 import os
 
@@ -19,7 +18,15 @@ def buscar_previsao(cidade: str):
     resposta = requests.get(url)
     if resposta.status_code != 200:
         raise HTTPException(status_code=404, detail="Cidade não encontrada ou erro na API externa")
+
     dados = resposta.json()
+    try:
+        temperatura = dados["main"]["temp"]
+        descricao = dados["weather"][0]["description"]
+        data_consulta = datetime.datetime.fromtimestamp(dados["dt"], datetime.timezone.utc)
+    except KeyError:
+        raise HTTPException(status_code=500, detail="Erro ao processar dados da API externa")
+
     return {
         "cidade": cidade,
         "temperatura": dados["main"]["temp"],
