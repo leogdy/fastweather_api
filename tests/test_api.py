@@ -10,7 +10,7 @@ from app.main import app, get_db
 
 load_dotenv()
 
-DATABASE_URL = os.getenv("DATABASE_URL")
+DATABASE_URL_TEST = os.getenv("DATABASE_URL_TEST", "postgresql://postgres:852456@localhost:5432/test_previsao")
 OPENWEATHER_API_KEY = os.getenv("OPENWEATHER_API_KEY")
 
 engine_test = create_engine(DATABASE_URL_TEST)
