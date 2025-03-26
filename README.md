@@ -64,6 +64,16 @@ uvicorn main:app --reload
 
 A API estará disponível em http://127.0.0.1:8000.
 
+💽 Como Funciona o Cache?
+
+A API utiliza um cache simples para armazenar previsões já consultadas, reduzindo chamadas repetitivas à OpenWeatherMap e melhorando o desempenho.
+
+Tempo de Vida (TTL): 5 minutos
+
+Se uma cidade for consultada novamente dentro desse período, os dados serão retornados do cache em vez de chamar a API externa.
+
+Após 5 minutos, a previsão expira e uma nova consulta é feita.
+
 ## 📡 Endpoints Disponíveis
 
 ### 1️⃣ Criar uma previsão do tempo
